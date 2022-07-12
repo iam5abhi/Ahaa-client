@@ -45,14 +45,22 @@ const KitchenBillingSystem = () => {
 
   console.log(userBill,"ghjgd")
 
-  const handleRemoveFields = (id,index) => {
+  const handleRemoveFields = (id) => {
     const value = [...fooodContainer];
-    value.splice(
-      value.findIndex((value) => value.id === id),
-    );
-    setfooodContainer(value);
-    userBill.foods.pop()
-   
+    console.log(value);
+    const filteredArray = value.filter((data) => {
+      return data.id !== id;
+    });
+    setfooodContainer(filteredArray);
+
+    const data = [...userBill.foods];
+    const foodfilterArray = data.filter((data) => {
+      return data.id !== id;
+    });
+    setUserBill((preState) => ({
+      ...preState,
+      foods: foodfilterArray,
+    }));
   };
 
  
