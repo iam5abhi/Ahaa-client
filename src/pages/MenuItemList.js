@@ -11,6 +11,34 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import DataTable,{ createTheme } from 'react-data-table-component';
+import { useNavigate } from "react-router-dom";
+
+
+
+
+const customStyles = {
+    row: {
+        style: {
+            backgroundColor:"yellow"
+        },
+    },
+    headCells: {
+        style: {
+            backgroundColor:" #F2F3F5",
+            borderRight:'1px solid white',
+            paddingLeft:"60px"
+        },
+    },
+    cells: {
+        style: {
+            paddingLeft:"60px",
+            borderRight:'1px solid white',
+        },
+    },
+};
+
+
 
 const MenuItemlist =()=>{
     const [menuItem,setmenuItem] =useState('')
@@ -29,6 +57,46 @@ const MenuItemlist =()=>{
        })
     },[]);
 
+
+    const columns =[
+        {
+            name:'MenuItemId',
+            selector: row => row.menuItemId,
+            sortable:true
+        },
+        {
+            name:'MenuItemName',
+            selector: row => row.menuName,
+            sortable:true
+        },
+        {
+            name:'Category',
+            selector:row=>row.category,
+            sortable:true
+        },
+        {
+            name:'Food Category',
+            selector:row=>row.foodCategory,
+            sortable:true
+        },
+        {
+            name:'Amount',
+            selector:row=>row.rate,
+        },
+        {
+            name:'Service Tax',
+            selector:row=>row.serviceTax,
+        },
+        {
+            name:'Toatl Amount',
+            selector:row=>row.totalAmount,
+            sortable:true
+        }
+
+
+    ]
+
+
       
     if(loading){
         return(
@@ -38,40 +106,22 @@ const MenuItemlist =()=>{
 
     return(
         <>
-           <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                            <TableRow>
-                                <TableCell>MenuItemId</TableCell>
-                                <TableCell align="right">MenuItemName</TableCell>
-                                <TableCell align="right">Category</TableCell>
-                                <TableCell align="right">Food Category</TableCell>
-                                <TableCell align="right">Amount</TableCell>
-                                <TableCell align="right">Service Tax</TableCell>
-                                <TableCell align="right">Toatl Amount</TableCell>
-                            </TableRow>
-                   </TableHead>
-
-                    <TableBody>
-                     {menuItem.map((row) => (
-                            <TableRow
-                            key={row._id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                            <TableCell component="th" scope="row">
-                                {row.menuItemId}
-                            </TableCell>
-                            <TableCell align="right">{row.menuName}</TableCell>
-                            <TableCell align="right">{row.category}</TableCell>
-                            <TableCell align="right">{row.foodCategory}</TableCell>
-                            <TableCell align="right">{row.rate}</TableCell>
-                            <TableCell align="right">{row.serviceTax}</TableCell>
-                            <TableCell align="right">{row.totalAmount}</TableCell>
-                            </TableRow>
-                        ))} 
-                    </TableBody>
-                </Table>
-            </TableContainer>
+           <div class="container-fluid">
+          <h1 class="text-center"><b>Menu Item List</b></h1>
+            <DataTable
+                title="Menu Card"
+                columns={columns}
+                data={menuItem}
+                pagination
+                fixedHeader
+                selectableRowsHighlight
+                highlightOnHover
+                customStyles={customStyles}
+                subHeader
+                subHeaderComponent={<input type="text" placeholder='search...' className='form-control'/>}
+                
+             />
+       </div>
         </>
     )
 }
