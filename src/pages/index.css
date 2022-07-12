@@ -1,0 +1,36 @@
+.Container{
+   width: 100%;
+   height: 100%;
+   border: 2px solid #92cbdf;
+}
+
+
+.main-container{
+    background-color: #92cbdf;
+    height: 50px;
+}
+
+
+.main-container-heading{
+     padding-top: 10px;
+     padding-left: 60px;
+     color: white;
+     font-size: medium;
+     font-family: Arial, Helvetica, sans-serif;
+     font-weight: bold;
+}
+
+
+
+.container-body{
+     margin-top: 20px;
+     margin-left: 100px;
+     font-family: Arial, Helvetica, sans-serif;
+     width: 80%;
+     
+}
+
+input{
+    width: 80%;
+    
+}
