@@ -10,6 +10,7 @@ import { Routes, Route,BrowserRouter, Link } from "react-router-dom";
 import BillingReport from "./pages/BillingReport";
 import EditBillReport from "./pages/EditBillReport";
 import ProtectedRoute from "./route/ProtectedRoute";
+import CustomerBill from "./pages/cusomerbill";
 
 const App =()=>{
    return (
@@ -22,6 +23,7 @@ const App =()=>{
                  <Route path ='/listofitem' element={<ProtectedRoute><MenuItemlist/></ProtectedRoute>}/>
                  <Route path="/report" element={<ProtectedRoute><BillingReport/></ProtectedRoute>}/>
                  <Route path ='/report/:id' element={<ProtectedRoute><EditBillReport/></ProtectedRoute>}/>
+                 <Route path='/bill/:id' element={<ProtectedRoute><CustomerBill/></ProtectedRoute>}/>
                  <Route path ='*'  element={<PageNotFound/>}/>
 
             </Routes>
