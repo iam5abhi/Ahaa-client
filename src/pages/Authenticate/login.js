@@ -29,7 +29,7 @@ const handleSubmit =(e)=>{
      if(!email || !password){
          toast.error('All field required',{
           position: toast.POSITION.TOP_CENTER,
-          autoClose:3000,
+          autoClose:1000,
           theme: "colored"
          })
      }
